@@ -31,3 +31,12 @@ func CreateArticle(c *gin.Context) {
 	}
 	utils.RespOk(c, articleId)
 }
+
+func GetArticleList(c *gin.Context) {
+	list, err := db.GetArticleList()
+	if err != nil {
+		utils.RespError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	utils.RespOk(c, list)
+}

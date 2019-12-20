@@ -12,7 +12,7 @@ func main() {
 }
 
 func initDb() {
-	dns := "root:xsN231564@tcp(localhost:3306)/blogger?parseTime=true"
+	dns := "root:xsN231564@tcp(localhost:3306)/blogger?parseTime=true&loc=Local"
 	err := db.Init(dns)
 	if err != nil {
 		panic(err)
@@ -28,6 +28,7 @@ func startService() {
 		v1.GET("/user", controller.GetUserById)
 		v1.DELETE("/user", controller.DeleteUserById)
 
+		v1.GET("/article/list", controller.GetArticleList)
 		v1.POST("/article", controller.CreateArticle)
 	}
 

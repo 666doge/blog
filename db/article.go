@@ -29,3 +29,11 @@ func InsertArticle(article *model.Article) (articleId int64, err error) {
 	articleId, err = result.LastInsertId()
 	return
 }
+
+func GetArticleList() (articleList []*model.Article, err error) {
+	sqlStr := `select
+					id, title, content, summary, category_id, view_count, username, comment_count, create_time, update_time
+				from article`
+	err = DB.Select(&articleList, sqlStr) 
+	return
+}
