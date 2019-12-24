@@ -40,3 +40,26 @@ func GetArticleList(c *gin.Context) {
 	}
 	utils.RespOk(c, list)
 }
+
+
+func GetArticleById(c *gin.Context) {
+	idStr := c.Query("id")
+	id, _ := strconv.ParseInt(idStr, 10, 64)
+	article, err := db.GetArticleById(id)
+	if err != nil {
+		utils.RespError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	utils.RespOk(c, article)
+}
+
+func GetArticleByCagegoryId(c *gin.Context) {
+	cateIdStr := c.Query("cateId")
+	id, _ := strconv.ParseInt(cateIdStr, 10, 64)
+	list, err := db.GetArticleByCagegoryId(id)
+	if err != nil {
+		utils.RespError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	utils.RespOk(c, list)
+}

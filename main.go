@@ -29,7 +29,11 @@ func startService() {
 		v1.DELETE("/user", controller.DeleteUserById)
 
 		v1.GET("/article/list", controller.GetArticleList)
+		v1.GET("/article", controller.GetArticleById)
 		v1.POST("/article", controller.CreateArticle)
+		v1.GET("/article/getByCateId", controller.GetArticleByCagegoryId)
+
+		v1.GET("/category/list", controller.GetCategoryList)
 	}
 
 	router.GET("/ping", func (c *gin.Context) {

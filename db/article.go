@@ -37,3 +37,25 @@ func GetArticleList() (articleList []*model.Article, err error) {
 	err = DB.Select(&articleList, sqlStr) 
 	return
 }
+
+func GetArticleById(id int64) (article *model.Article, err error) {
+	sqlStr := `select
+				id, title, content, summary, category_id, view_count, username, comment_count, create_time, update_time
+			from article
+			where
+				id = ?
+			`
+	err = DB.Get(article, sqlStr, id)
+	return
+}
+
+func GetArticleByCagegoryId(cateId int64) (list []*model.Article, err error) {
+	sqlStr := `select
+				id, title, content, summary, category_id, view_count, username, comment_count, create_time, update_time
+			from article
+			where
+			category_id = ?
+			`
+	err = DB.Select(&list, sqlStr, cateId)
+	return
+}
