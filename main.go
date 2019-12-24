@@ -29,9 +29,11 @@ func startService() {
 		v1.DELETE("/user", controller.DeleteUserById)
 
 		v1.GET("/article/list", controller.GetArticleList)
+		v1.GET("/article/next", controller.GetNextArticle)
+		v1.GET("/article/pre", controller.GetPreArticle)
 		v1.GET("/article", controller.GetArticleById)
 		v1.POST("/article", controller.CreateArticle)
-		v1.GET("/article/getByCateId", controller.GetArticleByCagegoryId)
+		v1.GET("/relativeArticleList", controller.GetRelativeArticleList)
 
 		v1.GET("/category/list", controller.GetCategoryList)
 	}
