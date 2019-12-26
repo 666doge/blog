@@ -36,6 +36,9 @@ func startService() {
 		v1.GET("/relativeArticleList", controller.GetRelativeArticleList)
 
 		v1.GET("/category/list", controller.GetCategoryList)
+
+		// 添加评论
+		v1.POST("/comment", controller.InsertComment)
 	}
 
 	router.GET("/ping", func (c *gin.Context) {
