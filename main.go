@@ -38,6 +38,7 @@ func startService() {
 		v1.GET("/category/list", controller.GetCategoryList)
 
 		// 添加评论
+		v1.GET("/comment/list", controller.GetCommentList)
 		v1.POST("/comment", controller.InsertComment)
 	}
 

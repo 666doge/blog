@@ -4,6 +4,7 @@ import (
 	// "fmt"
 	// "time"
 	"blog/model"
+	"database/sql"
 )
 
 func InsertArticle(article *model.Article) (articleId int64, err error) {
@@ -87,5 +88,20 @@ func GetPreArticle(id int64) (article *model.Article, err error) {
 			limit 1
 		`
 	err = DB.Get(article, sqlStr, id)
+	return
+}
+
+func IfArticleExists(articleId int64) (exists bool, err error) {
+	var id int64
+	sqlStr := `select id from article where id=?`
+	err = DB.Get(&id, sqlStr, articleId)
+	if err == sql.ErrNoRows{
+		exists = false
+		return
+	}
+	if err != nil {
+		return
+	}
+	exists = true
 	return
 }

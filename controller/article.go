@@ -6,6 +6,7 @@ import (
 	"blog/db"
 	"blog/utils"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -69,7 +70,7 @@ func GetNextArticle(c *gin.Context) {
 	id, _ := strconv.ParseInt(idStr, 10, 64)
 	article, err := db.GetNextArticle(id)
 	if err != nil {
-		utils.RespError(c, http.StatusInternalServerError, err.Error())
+		utils.RespOk(c, nil)
 		return
 	}
 	utils.RespOk(c, article)
@@ -80,7 +81,7 @@ func GetPreArticle(c *gin.Context) {
 	id, _ := strconv.ParseInt(idStr, 10, 64)
 	article, err := db.GetPreArticle(id)
 	if err != nil {
-		utils.RespError(c, http.StatusInternalServerError, err.Error())
+		utils.RespOk(c, nil)
 		return
 	}
 	utils.RespOk(c, article)

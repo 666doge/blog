@@ -15,3 +15,5 @@ at bigint(20) null,
 create_time timestamp(0) not null default current_timestamp,
 update_time timestamp(0) null default current_timestamp on update current_timestamp(0)
 )
+
+insert into comment (content, article_id, from_user) values('content1 from user1 article_id1', 1, 1)
